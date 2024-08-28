@@ -1,0 +1,32 @@
+--- index.html.tpl.orig	2024-08-23 15:33:20
++++ index.html.tpl	2024-08-24 02:35:04
+@@ -129,9 +129,29 @@
+                     Edit clipboard content in the textarea below.
+                 </p>
+                 <textarea id="noVNC_clipboard_text" rows=5></textarea>
++            </div>
++            </div>
++
++
++            <!-- Keystrokes -->
++            <input type="image" alt="Keystrokes" src="/novnc/app/images/keystrokes.svg"
++                id="noVNC_keystrokes_button" class="noVNC_button"
++                title="Key Strokes">
++            <div class="noVNC_vcenter">
++            <div id="noVNC_keystrokes" class="noVNC_panel">
++                <div class="noVNC_heading">
++                    <img alt="" src="/novnc/app/images/keystrokes.svg"> Key Strokes
++                </div>
++                <p class="noVNC_subheading">
++                    Only en-US keyboard layout supported.
++                </p>
++                <textarea id="noVNC_keystrokes_text" rows=5></textarea>
++                </p>
++        		<input id="keystroke_send_button" type="button" value="Send" />
+             </div>
+             </div>
+ 
++
+             <!-- Toggle fullscreen -->
+             <input type="image" alt="Fullscreen" src="/novnc/app/images/fullscreen.svg"
+                 id="noVNC_fullscreen_button" class="noVNC_button noVNC_hidden"

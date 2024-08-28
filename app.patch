@@ -1,0 +1,102 @@
+--- app.js.orig	2024-08-23 15:14:24
++++ app.js	2024-08-24 02:31:47
+@@ -14019,6 +14019,7 @@
+       UI.addMachineHandlers();
+       UI.addConnectionControlHandlers();
+       UI.addClipboardHandlers();
++      UI.addKeystrokesHandlers();
+       UI.addSettingsHandlers();
+       UI.PVE.addPVEHandlers();
+       document.getElementById("noVNC_status").addEventListener("click", UI.hideStatus);
+@@ -14160,6 +14161,10 @@
+       document.getElementById("noVNC_clipboard_button").addEventListener("click", UI.toggleClipboardPanel);
+       document.getElementById("noVNC_clipboard_text").addEventListener("change", UI.clipboardSend);
+     },
++    addKeystrokesHandlers() {
++      document.getElementById("noVNC_keystrokes_button").addEventListener("click", UI.toggleKeystrokesPanel);
++      document.getElementById("keystroke_send_button").addEventListener("click", UI.keystrokesSend);
++    },
+     // Add a call to save settings when the element changes,
+     // unless the optional parameter changeFunc is used instead.
+     addSettingChangeHandler(name, changeFunc) {
+@@ -14561,6 +14566,7 @@
+       UI.closeSettingsPanel();
+       UI.closePowerPanel();
+       UI.closeClipboardPanel();
++      UI.closeKeystrokesPanel();
+       UI.closeExtraKeys();
+       UI.closePVECommandPanel();
+     },
+@@ -14665,6 +14671,59 @@
+     /* ------^-------
+      *  /CLIPBOARD
+      * ==============
++     *  KEYSTROKES
++     * ------v------*/
++    openKeystrokesPanel() {
++      UI.closeAllPanels();
++      UI.openControlbar();
++      document.getElementById("noVNC_keystrokes").classList.add("noVNC_open");
++      document.getElementById("noVNC_keystrokes_button").classList.add("noVNC_selected");
++    },
++    closeKeystrokesPanel() {
++      document.getElementById("noVNC_keystrokes").classList.remove("noVNC_open");
++      document.getElementById("noVNC_keystrokes_button").classList.remove("noVNC_selected");
++    },
++    toggleKeystrokesPanel() {
++      if (document.getElementById("noVNC_keystrokes").classList.contains("noVNC_open")) {
++        UI.closeKeystrokesPanel();
++      } else {
++        UI.openKeystrokesPanel();
++      }
++    },
++    keystrokesSend() {
++      const text = document.getElementById("noVNC_keystrokes_text").value;
++      Debug(">> UI.keystrokesSend: " + text.substr(0, 40) + "...");
++      /* length is in UTF-16 units */
++      for (let i = 0; i < text.length; i++) {
++        let textCode = text.charCodeAt(i);
++
++        if (textCode === '\r'.charCodeAt()) {
++          continue;
++        }
++
++        if (textCode === '\n'.charCodeAt()) {
++          UI.rfb.sendKey(keysym_default.XK_Return, "Return");
++          continue;
++        }
++        if (textCode === '\t'.charCodeAt()) {
++          UI.rfb.sendKey(keysym_default.XK_Tab, "Tab");
++          continue;
++        }
++
++        /* Check if modifier like Shift is needed */
++        if (text.charAt(i).match(/[A-Z!@#$%^&*()_+{}|:\"<>?]/)) {
++          UI.rfb.sendKey(keysym_default.XK_Shift_L, "ShiftLeft", 1);
++          UI.rfb.sendKey(keysymdef_default.lookup(textCode));
++          UI.rfb.sendKey(keysym_default.XK_Shift_L, "ShiftLeft", 0);
++        } else {
++          UI.rfb.sendKey(keysymdef_default.lookup(textCode));
++        }
++      }
++      Debug("<< UI.keystrokesSend");
++    },
++    /* ------^-------
++     *  /KEYSTROKES
++     * ==============
+      *  CONNECTION
+      * ------v------*/
+     openConnectPanel() {
+@@ -15249,10 +15308,12 @@
+         document.getElementById("noVNC_keyboard_button").classList.add("noVNC_hidden");
+         document.getElementById("noVNC_toggle_extra_keys_button").classList.add("noVNC_hidden");
+         document.getElementById("noVNC_clipboard_button").classList.add("noVNC_hidden");
++        document.getElementById("noVNC_keystrokes_button").classList.add("noVNC_hidden");
+       } else {
+         document.getElementById("noVNC_keyboard_button").classList.remove("noVNC_hidden");
+         document.getElementById("noVNC_toggle_extra_keys_button").classList.remove("noVNC_hidden");
+         document.getElementById("noVNC_clipboard_button").classList.remove("noVNC_hidden");
++        document.getElementById("noVNC_keystrokes_button").classList.remove("noVNC_hidden");
+       }
+     },
+     updateShowDotCursor() {
