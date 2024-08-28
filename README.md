@@ -38,7 +38,7 @@ Tested on ProxMox 8.2.4.
   total 43
   drwxr-xr-x 2 root root    5 Aug 24 02:50 .
   drwx------ 5 root root   13 Aug 24 02:49 ..
-  -rw-r--r-- 1 root root 4228 Aug 24 02:50 app.patch
+  -rw-r--r-- 1 root root 4228 Aug 24 02:50 app.js.patch
   -rw-r--r-- 1 root root 1342 Aug 24 02:50 index.html.tpl.patch
   -rw-r--r-- 1 root root 4260 Aug 24 02:50 keystrokes.svg
   ~~~
@@ -62,7 +62,7 @@ Tested on ProxMox 8.2.4.
   ~~~sh
   cp /usr/share/novnc-pve/app.js /usr/share/novnc-pve/app.js.beforepatch
   cp /usr/share/novnc-pve/index.html.tpl /usr/share/novnc-pve/index.html.tpl.beforepatch
-  patch /usr/share/novnc-pve/app.js < /root/patches/app.patch
+  patch /usr/share/novnc-pve/app.js < /root/patches/app.js.patch
   patch /usr/share/novnc-pve/index.html.tpl < /root/patches/index.html.tpl.patch
   ~~~
 
