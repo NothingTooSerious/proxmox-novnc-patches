@@ -1,0 +1,23 @@
+proxmox-novnc-patches is Copyright (C) 2024 The NothingTooSerious authors (./AUTHORS)
+
+Original files are from ProxMox noVNC repository https://git.proxmox.com/?p=novnc-pve.git;a=summary
+
+All files are licensed as follows:
+
+    *.html *.html.* : 2-Clause BSD license
+
+    *.svg           : Creative Commons Attribution-ShareAlike
+                      https://creativecommons.org/licenses/by-sa/4.0/
+
+    Default (All other files) : MPL 2.0 (Mozilla Public License 2.0)
+
+The following license texts are included:
+
+    docs/LICENSE.MPL-2.0
+    docs/LICENSE.BSD-2-Clause (Simplified BSD / FreeBSD)
+
+Or alternatively the license texts may be found here:
+
+    https://www.mozilla.org/en-US/MPL/2.0/
+    https://opensource.org/license/bsd-2-clause
+    https://creativecommons.org/licenses/by-sa/4.0/
