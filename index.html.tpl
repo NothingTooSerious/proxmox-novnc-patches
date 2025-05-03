@@ -4,7 +4,7 @@
 
     <!--
     noVNC example: simple example using default UI
-    Copyright (C) 2019 The noVNC Authors
+    Copyright (C) 2019 The noVNC authors
     noVNC is licensed under the MPL 2.0 (see LICENSE.txt)
     This file is licensed under the 2-Clause BSD license (see LICENSE.txt).
 
@@ -15,30 +15,34 @@
     -->
     <title>[% nodename %] - Proxmox Console</title>
 
-    <meta charset="utf-8">
+    <meta name="theme-color" content="#313131">
 
     <!-- Apple iOS Safari settings -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="/novnc/app/styles/base.css?ver=1.4.0-3" />
-    <link rel="stylesheet" href="/novnc/app/styles/input.css?ver=1.4.0-3" />
-    <link rel="stylesheet" href="/novnc/app/styles/pve.css?ver=1.4.0-3" />
+    <link rel="stylesheet" href="/novnc/app/styles/constants.css?ver=1.6.0-2">
+    <link rel="stylesheet" href="/novnc/app/styles/base.css?ver=1.6.0-2">
+    <link rel="stylesheet" href="/novnc/app/styles/input.css?ver=1.6.0-2">
+    <link rel="stylesheet" href="/novnc/app/styles/pve.css?ver=1.6.0-2" />
 
     <!-- Images that will later appear via CSS -->
     <link rel="preload" as="image" href="/novnc/app/images/info.svg">
     <link rel="preload" as="image" href="/novnc/app/images/error.svg">
     <link rel="preload" as="image" href="/novnc/app/images/warning.svg">
 
-    <script type="module" crossorigin="anonymous" src="/novnc/app/error-handler.js?ver=1.4.0-3"></script>
+    <script type="module" crossorigin="anonymous" src="/novnc/app/error-handler.js?ver=1.6.0-2"></script>
     <script type="text/javascript">
 	if (typeof(PVE) === 'undefined') PVE = {};
 	PVE.UserName = '[% username %]';
 	PVE.CSRFPreventionToken = '[% token %]';
 	INCLUDE_URI='/novnc/include';
     </script>
-    <script crossorigin=anonymous" src="/novnc/app.js?ver=1.4.0-3"></script>
+    <script type="module">
+        import UI from "/novnc/app.js?ver=1.6.0-2";
+        UI.start({ settings: { defaults: {}, mandatory: {} } });
+    </script>
 </head>
 
 <body>
@@ -51,7 +55,7 @@
         </div>
     </div>
 
-    <!-- noVNC Control Bar -->
+    <!-- noVNC control bar -->
     <div id="noVNC_control_bar_anchor" class="noVNC_vcenter">
 
         <div id="noVNC_control_bar">
@@ -66,18 +70,18 @@
             <!-- Drag/Pan the viewport -->
             <input type="image" alt="Drag" src="/novnc/app/images/drag.svg"
                 id="noVNC_view_drag_button" class="noVNC_button noVNC_hidden"
-                title="Move/Drag Viewport">
+                title="Move/Drag viewport">
 
-            <!--noVNC Touch Device only buttons-->
+            <!--noVNC touch device only buttons-->
             <div id="noVNC_mobile_buttons">
                 <input type="image" alt="Keyboard" src="/novnc/app/images/keyboard.svg"
-                    id="noVNC_keyboard_button" class="noVNC_button" title="Show Keyboard">
+                    id="noVNC_keyboard_button" class="noVNC_button" title="Show keyboard">
             </div>
 
             <!-- Extra manual keys -->
             <input type="image" alt="Extra keys" src="/novnc/app/images/toggleextrakeys.svg"
                 id="noVNC_toggle_extra_keys_button" class="noVNC_button"
-                title="Show Extra Keys">
+                title="Show extra keys">
             <div class="noVNC_vcenter">
             <div id="noVNC_modifiers" class="noVNC_panel">
                 <input type="image" alt="Ctrl" src="/novnc/app/images/ctrl.svg"
@@ -132,7 +136,6 @@
             </div>
             </div>
 
-
             <!-- Keystrokes -->
             <input type="image" alt="Keystrokes" src="/novnc/app/images/keystrokes.svg"
                 id="noVNC_keystrokes_button" class="noVNC_button"
@@ -151,11 +154,10 @@
             </div>
             </div>
 
-
             <!-- Toggle fullscreen -->
-            <input type="image" alt="Fullscreen" src="/novnc/app/images/fullscreen.svg"
+            <input type="image" alt="Full screen" src="/novnc/app/images/fullscreen.svg"
                 id="noVNC_fullscreen_button" class="noVNC_button noVNC_hidden"
-                title="Full Screen">
+                title="Full screen">
 
             <!-- Settings -->
             <input type="image" alt="Settings" src="/novnc/app/images/settings.svg"
@@ -168,29 +170,49 @@
                 </div>
                 <ul>
                     <li style="display:none;">
-                        <label><input id="noVNC_setting_shared" type="checkbox"> Shared Mode</label>
+                        <label>
+                            <input id="noVNC_setting_shared" type="checkbox"
+                                   class="toggle">
+                            Shared mode
+                        </label>
                     </li>
                     <li>
-                        <label><input id="noVNC_setting_view_only" type="checkbox"> View Only</label>
+                        <label>
+                            <input id="noVNC_setting_view_only" type="checkbox"
+                                   class="toggle">
+                            View only
+                        </label>
                     </li>
                     <li><hr></li>
                     <li>
-                        <label><input id="noVNC_setting_view_clip" type="checkbox"> Clip to Window</label>
+                        <label>
+                            <input id="noVNC_setting_view_clip" type="checkbox"
+                                   class="toggle">
+                            Clip to window
+                        </label>
                     </li>
                     <li>
-                        <label><input id="noVNC_setting_local_cursor" type="checkbox" /> Local Cursor</label>
+                        <label>
+                            <input id="noVNC_setting_local_cursor" type="checkbox"
+                                    class="toggle">
+                            Local Cursor
+                        </label>
                     </li>
                     <li>
-                        <label><input id="noVNC_setting_autoresize" type="checkbox" /> Autoresize Window</label>
+                        <label>
+                            <input id="noVNC_setting_autoresize" type="checkbox"
+                                    class="toggle">
+                            Autoresize Window
+                        </label>
                     </li>
                     <li>
-                        <label for="noVNC_setting_resize">Scaling Mode:</label>
+                        <label for="noVNC_setting_resize">Scaling mode:</label>
                         <select id="noVNC_setting_resize" name="vncResize">
-                            <option value="off">Off</option>
-                            <option value="scale">Local Scaling</option>
+                            <option value="off">None</option>
+                            <option value="scale">Local scaling</option>
+                            <option value="remote">Remote resizing</option>
                         </select>
                     </li>
-                    <li><hr></li>
                     <li style="display:none;">
                         <div class="noVNC_expander">Advanced</div>
                         <div><ul>
@@ -211,7 +233,11 @@
                                 <div class="noVNC_expander">WebSocket</div>
                                 <div><ul>
                                     <li>
-                                        <label><input id="noVNC_setting_encrypt" type="checkbox"> Encrypt</label>
+                                        <label>
+                                            <input id="noVNC_setting_encrypt" type="checkbox"
+                                                   class="toggle">
+                                            Encrypt
+                                        </label>
                                     </li>
                                     <li>
                                         <label for="noVNC_setting_host">Host:</label>
@@ -229,15 +255,23 @@
                             </li>
                             <li><hr></li>
                             <li>
-                                <label><input id="noVNC_setting_reconnect" type="checkbox"> Automatic Reconnect</label>
+                                <label>
+                                    <input id="noVNC_setting_reconnect" type="checkbox"
+                                           class="toggle">
+                                    Automatic reconnect
+                                </label>
                             </li>
                             <li>
-                                <label for="noVNC_setting_reconnect_delay">Reconnect Delay (ms):</label>
+                                <label for="noVNC_setting_reconnect_delay">Reconnect delay (ms):</label>
                                 <input id="noVNC_setting_reconnect_delay" type="number">
                             </li>
                             <li><hr></li>
                             <li>
-                                <label><input id="noVNC_setting_show_dot" type="checkbox"> Show Dot when No Cursor</label>
+                                <label>
+                                    <input id="noVNC_setting_show_dot" type="checkbox"
+                                           class="toggle">
+                                    Show dot when no cursor
+                                </label>
                             </li>
                             <li><hr></li>
                             <!-- Logging selection dropdown -->
@@ -279,7 +313,7 @@
 	    </div>
 
 
-            <!-- Connection Controls -->
+            <!-- Connection controls -->
             <input type="image" alt="Disconnect" src="/novnc/app/images/disconnect.svg"
                 id="noVNC_disconnect_button" class="noVNC_button"
                 title="Disconnect">
@@ -294,7 +328,7 @@
         </div>
     </div>
 
-    <!-- Status Dialog -->
+    <!-- Status dialog -->
     <div id="noVNC_status"></div>
 
     <!-- Connect button -->
@@ -309,7 +343,7 @@
         </div>
     </div>
 
-    <!-- Server Key Verification Dialog -->
+    <!-- Server key verification dialog -->
     <div class="noVNC_center noVNC_connect_layer">
     <div id="noVNC_verify_server_dlg" class="noVNC_panel"><form>
         <div class="noVNC_heading">
@@ -319,16 +353,16 @@
             The server has provided the following identifying information:
         </div>
         <div id="noVNC_fingerprint_block">
-            <b>Fingerprint:</b>
+            Fingerprint:
             <span id="noVNC_fingerprint"></span>
         </div>
         <div>
             Please verify that the information is correct and press
             "Approve". Otherwise press "Reject".
         </div>
-        <div>
-            <input id="noVNC_approve_server_button" type="submit" value="Approve" class="noVNC_submit">
-            <input id="noVNC_reject_server_button" type="button" value="Reject" class="noVNC_submit">
+        <div class="button_row">
+            <input id="noVNC_approve_server_button" type="submit" value="Approve">
+            <input id="noVNC_reject_server_button" type="button" value="Reject">
         </div>
     </form></div>
     </div>
@@ -342,7 +376,7 @@
         </div>
     </div>
 
-    <!-- Password Dialog -->
+    <!-- Password dialog -->
     <div class="noVNC_center noVNC_connect_layer">
     <div id="noVNC_credentials_dlg" class="noVNC_panel"><form>
         <div class="noVNC_heading">
@@ -356,17 +390,17 @@
             <label for="noVNC_password_input">Password:</label>
             <input id="noVNC_password_input" type="password">
         </div>
-        <div>
-            <input id="noVNC_credentials_button" type="submit" value="Send Credentials" class="noVNC_submit">
+        <div class="button_row">
+            <input id="noVNC_credentials_button" type="submit" value="Send credentials">
         </div>
     </form></div>
     </div>
 
-    <!-- Transition Screens -->
+    <!-- Transition screens -->
     <div id="noVNC_transition">
         <div id="noVNC_transition_text"></div>
         <div>
-        <input type="button" id="noVNC_cancel_reconnect_button" value="Cancel" class="noVNC_submit">
+        <input type="button" id="noVNC_cancel_reconnect_button" value="Cancel">
         </div>
         <div class="noVNC_spinner"></div>
     </div>

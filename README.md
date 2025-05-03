@@ -13,8 +13,11 @@ Best practices for maximum compatibility between OS and keyboards is to install 
 Encryption passwords should be limited to the standard ASCII codes.
 
 ## Compatibility
+Ensure to select the applicable release.
 
 Tested on ProxMox 8.2.4.
+Tested on ProxMox 8.3.5.
+Tested on ProxMox 8.4.1.
 
 ## Installation
 

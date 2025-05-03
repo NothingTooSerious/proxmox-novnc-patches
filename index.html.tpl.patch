@@ -1,12 +1,11 @@
---- index.html.tpl.orig	2024-08-23 15:33:20
-+++ index.html.tpl	2024-08-24 02:35:04
-@@ -129,9 +129,29 @@
+--- index.html.tpl.orig	2025-05-03 14:02:00
++++ index.html.tpl	2025-05-03 14:05:47
+@@ -133,6 +133,24 @@
                      Edit clipboard content in the textarea below.
                  </p>
                  <textarea id="noVNC_clipboard_text" rows=5></textarea>
 +            </div>
 +            </div>
-+
 +
 +            <!-- Keystrokes -->
 +            <input type="image" alt="Keystrokes" src="/novnc/app/images/keystrokes.svg"
@@ -26,7 +25,3 @@
              </div>
              </div>
  
-+
-             <!-- Toggle fullscreen -->
-             <input type="image" alt="Fullscreen" src="/novnc/app/images/fullscreen.svg"
-                 id="noVNC_fullscreen_button" class="noVNC_button noVNC_hidden"
