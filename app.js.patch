@@ -1,6 +1,6 @@
---- app.js.orig	2025-05-03 14:09:07
-+++ app.js	2025-05-03 14:16:14
-@@ -14847,6 +14847,7 @@
+--- app.js.orig	2025-09-14 11:58:43
++++ app.js	2025-09-14 11:58:33
+@@ -14857,6 +14857,7 @@
      UI.addMachineHandlers();
      UI.addConnectionControlHandlers();
      UI.addClipboardHandlers();
@@ -8,7 +8,7 @@
      UI.addSettingsHandlers();
      UI.PVE.addPVEHandlers();
      document.getElementById("noVNC_status").addEventListener("click", UI.hideStatus);
-@@ -14989,6 +14990,10 @@
+@@ -14998,6 +14999,10 @@
      document.getElementById("noVNC_clipboard_button").addEventListener("click", UI.toggleClipboardPanel);
      document.getElementById("noVNC_clipboard_text").addEventListener("change", UI.clipboardSend);
    },
@@ -19,7 +19,7 @@
    // Add a call to save settings when the element changes,
    // unless the optional parameter changeFunc is used instead.
    addSettingChangeHandler(name, changeFunc) {
-@@ -15408,6 +15413,7 @@
+@@ -15413,6 +15418,7 @@
      UI.closeSettingsPanel();
      UI.closePowerPanel();
      UI.closeClipboardPanel();
@@ -27,7 +27,7 @@
      UI.closeExtraKeys();
      UI.closePVECommandPanel();
    },
-@@ -15512,6 +15518,59 @@
+@@ -15517,6 +15523,59 @@
    /* ------^-------
     *  /CLIPBOARD
     * ==============
@@ -87,7 +87,7 @@
     *  CONNECTION
     * ------v------*/
    openConnectPanel() {
-@@ -16099,10 +16158,12 @@
+@@ -16090,10 +16149,12 @@
        document.getElementById("noVNC_keyboard_button").classList.add("noVNC_hidden");
        document.getElementById("noVNC_toggle_extra_keys_button").classList.add("noVNC_hidden");
        document.getElementById("noVNC_clipboard_button").classList.add("noVNC_hidden");

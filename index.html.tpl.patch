@@ -1,5 +1,5 @@
---- index.html.tpl.orig	2025-05-03 14:02:00
-+++ index.html.tpl	2025-05-03 14:05:47
+--- index.html.tpl.orig	2025-09-14 11:56:34
++++ index.html.tpl	2025-09-14 12:01:41
 @@ -133,6 +133,24 @@
                      Edit clipboard content in the textarea below.
                  </p>

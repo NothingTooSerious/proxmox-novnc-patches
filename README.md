@@ -18,6 +18,7 @@ Ensure to select the applicable release.
 Tested on ProxMox 8.2.4.
 Tested on ProxMox 8.3.5.
 Tested on ProxMox 8.4.1.
+Tested on ProxMox 9.0.6.
 
 ## Installation
 
