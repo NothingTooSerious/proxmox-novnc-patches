@@ -13,12 +13,14 @@ Best practices for maximum compatibility between OS and keyboards is to install 
 Encryption passwords should be limited to the standard ASCII codes.
 
 ## Compatibility
+
 Ensure to select the applicable release.
 
-Tested on ProxMox 8.2.4.
-Tested on ProxMox 8.3.5.
-Tested on ProxMox 8.4.1.
+Tested on ProxMox 9.0.9.
 Tested on ProxMox 9.0.6.
+Tested on ProxMox 8.4.1.
+Tested on ProxMox 8.3.5.
+Tested on ProxMox 8.2.4.
 
 ## Installation
 
@@ -29,13 +31,13 @@ Tested on ProxMox 9.0.6.
   apt install patch
   ~~~
 
-* Create a directory to hold the patches
+* Create a directory to hold the patches.
 
   ~~~sh
   mkdir /root/patches
   ~~~
 
-* Upload or copy the svg file and patches to /root/patches
+* Upload or copy the svg file and patches to /root/patches.
 
   ~~~sh
   root@proxmox01:~/patches# ls -al /root/patches
@@ -47,13 +49,13 @@ Tested on ProxMox 9.0.6.
   -rw-r--r-- 1 root root 4260 Aug 24 02:50 keystrokes.svg
   ~~~
 
-* Change to the noVNC directory
+* Change to the noVNC directory.
 
   ~~~sh
   cd /usr/share/novnc-pve
   ~~~
 
-* Copy the image file into the images directory
+* Copy the image file into the images directory.
 
   ~~~sh
   cp /root/patches/keystrokes.svg /usr/share/novnc-pve/app/images/
@@ -61,7 +63,7 @@ Tested on ProxMox 9.0.6.
   chmod 644 /usr/share/novnc-pve/app/images/keystrokes.svg
   ~~~
 
-* Take a backup of the original noVNC files then apply the patches
+* Take a backup of the original noVNC files then apply the patches.
 
   ~~~sh
   cp /usr/share/novnc-pve/app.js /usr/share/novnc-pve/app.js.beforepatch
@@ -70,16 +72,22 @@ Tested on ProxMox 9.0.6.
   patch /usr/share/novnc-pve/index.html.tpl < /root/patches/index.html.tpl.patch
   ~~~
 
-* Close any browser windows logged into ProxMox
-* Clear the browser cache
-* Restart the browser
-* Log into ProxMox
+* Close any browser windows logged into ProxMox.
+* Clear the browser cache.
+  * Some browsers aggressively cache javascript code so a hard refresh and removing browsing data cache may be required.
+  * Test access using Incognito or Private browsing mode as some browser's aggressively cache old code.
+* Restart the browser.
+* Log into ProxMox.
 * Enjoy using the Keystroke pasting.
 * (Optional) Remove the /root/patches directory. Useful to keep if wishing to revert the patches
 
 ## Upgrading
 
-Anytime ProxMox is upgraded that involves changing noVNC files, please re-apply the patches.
+* Anytime ProxMox is upgraded that involves changing noVNC files, please re-apply the patches.
+* Clear the browser cache.
+  * Some browsers aggressively cache javascript code so a hard refresh and removing browsing data cache may be required.
+  * Test access using Incognito or Private browsing mode as some browser's aggressively cache old code.
+* Restart the browser.
 
 ## Background
 

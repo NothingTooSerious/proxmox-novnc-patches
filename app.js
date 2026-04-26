@@ -14710,7 +14710,7 @@ PVEUI.prototype = {
           port: result.data.port,
           vncticket: result.data.ticket
         });
-        let password = result.data.ticket;
+        let password = result.data.password ?? result.data.ticket;
         me.UI.reconnectPassword = password;
         me.UI.forceSetting("path", "api2/json" + me.baseUrl + "/vncwebsocket?" + wsparams);
         callback(password);
@@ -15571,6 +15571,9 @@ var UI = {
         UI.rfb.sendKey(keysymdef_default.lookup(textCode));
       }
     }
+    // Clear the text field and close the panel after sending keystrokes
+    document.getElementById("noVNC_keystrokes_text").value = "";
+    UI.closeKeystrokesPanel();
     Debug("<< UI.keystrokesSend");
   },
   /* ------^-------

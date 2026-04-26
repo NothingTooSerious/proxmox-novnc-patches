@@ -22,17 +22,17 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="/novnc/app/styles/constants.css?ver=1.6.0-3">
-    <link rel="stylesheet" href="/novnc/app/styles/base.css?ver=1.6.0-3">
-    <link rel="stylesheet" href="/novnc/app/styles/input.css?ver=1.6.0-3">
-    <link rel="stylesheet" href="/novnc/app/styles/pve.css?ver=1.6.0-3" />
+    <link rel="stylesheet" href="/novnc/app/styles/constants.css?ver=1.6.0-4">
+    <link rel="stylesheet" href="/novnc/app/styles/base.css?ver=1.6.0-4">
+    <link rel="stylesheet" href="/novnc/app/styles/input.css?ver=1.6.0-4">
+    <link rel="stylesheet" href="/novnc/app/styles/pve.css?ver=1.6.0-4" />
 
     <!-- Images that will later appear via CSS -->
     <link rel="preload" as="image" href="/novnc/app/images/info.svg">
     <link rel="preload" as="image" href="/novnc/app/images/error.svg">
     <link rel="preload" as="image" href="/novnc/app/images/warning.svg">
 
-    <script type="module" crossorigin="anonymous" src="/novnc/app/error-handler.js?ver=1.6.0-3"></script>
+    <script type="module" crossorigin="anonymous" src="/novnc/app/error-handler.js?ver=1.6.0-4"></script>
     <script type="text/javascript">
 	if (typeof(PVE) === 'undefined') PVE = {};
 	PVE.UserName = '[% username %]';
@@ -40,7 +40,7 @@
 	INCLUDE_URI='/novnc/include';
     </script>
     <script type="module">
-        import UI from "/novnc/app.js?ver=1.6.0-3";
+        import UI from "/novnc/app.js?ver=1.6.0-4";
         UI.start({ settings: { defaults: {}, mandatory: {} } });
     </script>
 </head>
@@ -149,8 +149,7 @@
                     Only en-US keyboard layout supported.
                 </p>
                 <textarea id="noVNC_keystrokes_text" rows=5></textarea>
-                </p>
-        		<input id="keystroke_send_button" type="button" value="Send" />
+        		<input id="keystroke_send_button" type="button" value="Send" style="background-color: color-mix(in srgb, var(--novnc-lightgrey), transparent 0%);" />
             </div>
             </div>
 

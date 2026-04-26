@@ -1,5 +1,5 @@
---- app.js.orig	2025-09-14 11:58:43
-+++ app.js	2025-09-14 11:58:33
+--- app.js.orig	2026-04-26 09:49:06
++++ app.js	2026-04-26 10:01:24
 @@ -14857,6 +14857,7 @@
      UI.addMachineHandlers();
      UI.addConnectionControlHandlers();
@@ -8,17 +8,17 @@
      UI.addSettingsHandlers();
      UI.PVE.addPVEHandlers();
      document.getElementById("noVNC_status").addEventListener("click", UI.hideStatus);
-@@ -14998,6 +14999,10 @@
+@@ -14997,6 +14998,10 @@
+   addClipboardHandlers() {
      document.getElementById("noVNC_clipboard_button").addEventListener("click", UI.toggleClipboardPanel);
      document.getElementById("noVNC_clipboard_text").addEventListener("change", UI.clipboardSend);
-   },
++  },
 +  addKeystrokesHandlers() {
 +    document.getElementById("noVNC_keystrokes_button").addEventListener("click", UI.toggleKeystrokesPanel);
 +    document.getElementById("keystroke_send_button").addEventListener("click", UI.keystrokesSend);
-+  },
+   },
    // Add a call to save settings when the element changes,
    // unless the optional parameter changeFunc is used instead.
-   addSettingChangeHandler(name, changeFunc) {
 @@ -15413,6 +15418,7 @@
      UI.closeSettingsPanel();
      UI.closePowerPanel();
@@ -27,10 +27,11 @@
      UI.closeExtraKeys();
      UI.closePVECommandPanel();
    },
-@@ -15517,6 +15523,59 @@
+@@ -15516,6 +15522,62 @@
+   },
    /* ------^-------
     *  /CLIPBOARD
-    * ==============
++   * ==============
 +   *  KEYSTROKES
 +   * ------v------*/
 +  openKeystrokesPanel() {
@@ -79,15 +80,17 @@
 +        UI.rfb.sendKey(keysymdef_default.lookup(textCode));
 +      }
 +    }
++    // Clear the text field and close the panel after sending keystrokes
++    document.getElementById("noVNC_keystrokes_text").value = "";
++    UI.closeKeystrokesPanel();
 +    Debug("<< UI.keystrokesSend");
 +  },
 +  /* ------^-------
 +   *  /KEYSTROKES
-+   * ==============
+    * ==============
     *  CONNECTION
     * ------v------*/
-   openConnectPanel() {
-@@ -16090,10 +16149,12 @@
+@@ -16090,10 +16152,12 @@
        document.getElementById("noVNC_keyboard_button").classList.add("noVNC_hidden");
        document.getElementById("noVNC_toggle_extra_keys_button").classList.add("noVNC_hidden");
        document.getElementById("noVNC_clipboard_button").classList.add("noVNC_hidden");
